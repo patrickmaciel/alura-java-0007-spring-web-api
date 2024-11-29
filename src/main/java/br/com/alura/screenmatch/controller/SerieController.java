@@ -29,4 +29,9 @@ public class SerieController {
             s.getSinopse()))
         .collect(Collectors.toList());
   }
+
+  @GetMapping("/")
+  public String hello() {
+    return "Hello, World!";
+  }
 }
