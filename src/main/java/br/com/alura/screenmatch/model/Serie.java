@@ -122,8 +122,8 @@ public class Serie {
         ", genero=" + genero +
         ", atores='" + atores + '\'' +
         ", poster='" + poster + '\'' +
-        ", sinopse='" + sinopse + '\'' +
-        ", episodios='" + episodios + '\'';
+        ", sinopse='" + sinopse + '\'';
+//        ", episodios='" + episodios + '\'';
   }
 
   public void setId(Long id) {
