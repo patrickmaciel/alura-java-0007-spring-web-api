@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch.controller;
 
+import br.com.alura.screenmatch.dto.EpisodioDTO;
 import br.com.alura.screenmatch.dto.SerieDTO;
 import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.repository.SerieRepository;
@@ -36,5 +37,15 @@ public class SerieController {
   @GetMapping("/{id}")
   public SerieDTO getSerieById(@PathVariable Long id) {
     return service.findById(id);
+  }
+
+  @GetMapping("/{id}/temporadas/todas")
+  public List<EpisodioDTO> findAllSeasonsFromSerie(@PathVariable Long id) {
+    return service.findAllSeasonsFromSerie(id);
+  }
+
+  @GetMapping("/{id}/temporadas/{temporada}")
+  public List<EpisodioDTO> findEpisodeFromSeason(@PathVariable Long id, @PathVariable Integer temporada) {
+    return service.findEpisodeFromSeason(id, temporada);
   }
 }
