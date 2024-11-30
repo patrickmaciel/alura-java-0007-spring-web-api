@@ -122,4 +122,20 @@ public class SerieService {
             s.getSinopse()))
         .collect(Collectors.toList());
   }
+
+  public List<EpisodioDTO> findTop5Episodes(Long id) {
+    Optional<Serie> serieFound = repository.findById(id);
+
+    if (serieFound.isPresent()) {
+      Serie serie = serieFound.get();
+      return repository.buscaTopEpisodiosPorSerie(serie).stream()
+          .map(e -> new EpisodioDTO(
+              e.getTemporada(),
+              e.getNumeroEpisodio(),
+              e.getTitulo())
+          ).toList();
+    }
+
+    return null;
+  }
 }
