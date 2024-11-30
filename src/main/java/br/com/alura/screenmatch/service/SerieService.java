@@ -2,6 +2,7 @@ package br.com.alura.screenmatch.service;
 
 import br.com.alura.screenmatch.dto.EpisodioDTO;
 import br.com.alura.screenmatch.dto.SerieDTO;
+import br.com.alura.screenmatch.model.Categoria;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.model.Episodio;
 import br.com.alura.screenmatch.model.Serie;
@@ -106,5 +107,19 @@ public class SerieService {
             e.getNumeroEpisodio(),
             e.getTitulo())
         ).toList();
+  }
+
+  public List<SerieDTO> findByGenre(String genre) {
+    return repository.findByGenero(Categoria.fromPortugues(genre)).stream()
+        .map(s -> new SerieDTO(
+            s.getId(),
+            s.getTitulo(),
+            s.getTotalTemporadas(),
+            s.getAvaliacao(),
+            s.getGenero().name(),
+            s.getAtores(),
+            s.getPoster(),
+            s.getSinopse()))
+        .collect(Collectors.toList());
   }
 }
