@@ -13,14 +13,6 @@ public class SerieService {
   @Autowired
   private SerieRepository repository;
 
-  public List<SerieDTO> findAllSeries() {
-    return convertData(repository.findAll());
-  }
-
-  public List<SerieDTO> findTop5Series() {
-    return convertData(repository.findTop5ByOrderByAvaliacaoDesc());
-  }
-
   private List<SerieDTO> convertData(List<Serie> series) {
     return series.stream()
         .map(s -> new SerieDTO(
@@ -34,5 +26,18 @@ public class SerieService {
             s.getSinopse()))
         .collect(Collectors.toList());
 
+  }
+
+  public List<SerieDTO> findAllSeries() {
+    return convertData(repository.findAll());
+  }
+
+  public List<SerieDTO> findTop5Series() {
+    return convertData(repository.findTop5ByOrderByAvaliacaoDesc());
+  }
+
+  public List<SerieDTO> findReleases() {
+//    return convertData(repository.findTop5ByOrderByEpisodiosDataLancamentoDesc());
+    return convertData(repository.buscaSeriesComEpisodiosMaisRecentes());
   }
 }
